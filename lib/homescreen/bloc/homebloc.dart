@@ -7,9 +7,6 @@ import '../../data/respository/repo_impl.dart';
 class HomeBloc{
   Repo _repo=RepoImpl();
   StreamController<List<Homemodel>> postsController=  StreamController();
-
-
-
   int count = 1;
 
   Future<List<Homemodel>> fetchPost([howMany = 10]) async {

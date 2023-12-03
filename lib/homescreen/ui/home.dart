@@ -9,6 +9,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   HomeBloc homeBloc=HomeBloc();
+
+
   ScrollController controller=ScrollController();
 
   @override
