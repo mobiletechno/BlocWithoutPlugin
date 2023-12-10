@@ -5,7 +5,7 @@ import 'dart:convert' as convert;
 import 'package:blocwithoutplugin/data/data_provider/http_service_impl.dart';
 import 'package:blocwithoutplugin/data/respository/repo.dart';
 
-import '../../appconfig/constant.dart';
+import '../../config/constant.dart';
 import '../data_provider/http_service.dart';
 
 class RepoImpl implements Repo {
@@ -22,7 +22,6 @@ class RepoImpl implements Repo {
       final response = await _httpService.getRequest(
           "${Constant.BASEURL}?per_page=$pagination&context=embed");
 
-print("${Constant.BASEURL}?per_page=$pagination&context=embed");
       if (response.statusCode == 200) {
         var jsonResponse =
         convert.jsonDecode(response.body);

@@ -8,12 +8,11 @@ import 'package:blocwithoutplugin/data/storage/database_helper.dart';
 
 
 class HomeBloc{
-  HomeBloc._privateConstructor();
-  static final HomeBloc instance = HomeBloc._privateConstructor();
+
   final dbHelper = DatabaseHelper.instance;
 
   Repo _repo=RepoImpl();
-  StreamController<List<HomeModel>> postsController=  StreamController();
+  StreamController<List<HomeModel>> homeController=  StreamController();
   int count = 1;
 
   Future<List<HomeModel>> fetchPost([howMany = 10]) async {
@@ -36,16 +35,15 @@ class HomeBloc{
 
     );
     int id = await dbHelper.insert(newhomeModel);
-    // int id = await dbHelper.insert(newNote);
+
 
     homeModel.id = id;
 
-    // _notes.add(newNote);
 
   }
   loadPosts() async {
     fetchPost().then((res) async {
-      postsController!.add(res);
+      homeController!.add(res);
       return res;
     });
   }
@@ -60,11 +58,15 @@ class HomeBloc{
 
 
   Future<void> handleRefresh() async {
+
     count++;
     print(count);
     fetchPost(count * 10).then((res) async {
-
-      postsController!.add(res);
+      if(homeController.hasListener) {
+      homeController!.add(res);
+      }else{
+        homeController.onPause;
+      }
       // showSnack();
 
     });

@@ -1,10 +1,11 @@
 
 
-import 'package:blocwithoutplugin/presentation/cart/ui/cart.dart';
+import 'package:blocwithoutplugin/config/constant.dart';
+import 'package:blocwithoutplugin/presentation/cart_screen/ui/cart.dart';
 import 'package:flutter/material.dart';
 
 
-import 'package:blocwithoutplugin/presentation/homescreen/ui/home.dart';
+import 'package:blocwithoutplugin/presentation/home_screen/ui/home.dart';
 
 
 class RouteGenerator {
@@ -12,10 +13,10 @@ class RouteGenerator {
   static Route<dynamic> generateRoutes(RouteSettings settings) {
 
     switch(settings.name) {
-      case '/':
+      case '${Constant.ROOT_NAME}':
         return MaterialPageRoute(builder: (context) => MyHomePage(),
         );
-      case '/cart':
+      case '${Constant.CART_NAME}':
         return MaterialPageRoute(builder: (context) =>
          MyCartPage(),
         );
