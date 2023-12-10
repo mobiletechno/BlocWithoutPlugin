@@ -3,7 +3,6 @@ import 'package:http/src/response.dart';
 
 import 'http_service.dart';
 
-
 class HttpServiceImplementation extends HttpService {
   @override
   void init() {

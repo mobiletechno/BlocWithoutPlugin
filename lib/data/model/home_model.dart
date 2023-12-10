@@ -1,11 +1,12 @@
 class HomeModel {
   HomeModel({
-      this.id, 
-      this.date, 
-      this.slug, 
-      this.type, 
-      this.link, 
-      this.protected,});
+    this.id,
+    this.date,
+    this.slug,
+    this.type,
+    this.link,
+    this.protected,
+  });
 
   HomeModel.fromJson(dynamic json) {
     id = json['id'];
@@ -32,5 +33,4 @@ class HomeModel {
     map['protected'] = protected;
     return map;
   }
-
 }

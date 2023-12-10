@@ -1,14 +1,10 @@
-
-
-
 import 'dart:async';
 import 'dart:io';
+
 import 'package:blocwithoutplugin/data/model/home_model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-
-
 
 class DatabaseHelper {
   static final _databaseName = "rajkumarcrud.db";
@@ -23,8 +19,6 @@ class DatabaseHelper {
   static final columnType = 'type';
   static final columnLink = 'link';
   static final columnprotected = 'protected';
-
-
 
   // Make this a singleton class
   DatabaseHelper._privateConstructor();
@@ -60,7 +54,6 @@ class DatabaseHelper {
              $columnLink TEXT,
              $columnprotected BOOLEAN)
            ''');
-
   }
 
   Future<int> insert(HomeModel note) async {

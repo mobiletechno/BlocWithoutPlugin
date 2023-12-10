@@ -1,14 +1,14 @@
 import 'package:blocwithoutplugin/appexport.dart';
-import 'package:blocwithoutplugin/logic/home_bloc.dart';
 import 'package:blocwithoutplugin/data/model/home_model.dart';
+import 'package:blocwithoutplugin/logic/home_bloc.dart';
 import 'package:blocwithoutplugin/utils/route_management/navigation_service.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
-  _MyHomePageState createState() =>  _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   final homeBloc = HomeBloc();
   final _routeService = NavigationService.instance;
 
@@ -16,7 +16,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
 
   @override
   void initState() {
-
     controller = ScrollController()..addListener(_scrollListener);
     homeBloc.loadPosts();
     super.initState();
@@ -48,7 +47,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
           GestureDetector(
               onTap: () {
                 _routeService.routeTo('/cart');
-
               },
               child: Icon(Icons.shopping_cart))
         ],
@@ -114,8 +112,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
 
   @override
   void deactivate() {
-
-
     controller.removeListener(_scrollListener);
     homeBloc.homeController.onPause;
     super.deactivate();
@@ -126,12 +122,10 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   void reassemble() {
     super.reassemble();
     print("----reassemble--------");
-
   }
+
   @override
   void didChangeDependencies() {
-
-
     super.didChangeDependencies();
     print("----didChangeDependencies--------");
   }
@@ -141,14 +135,13 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
     super.didChangeAppLifecycleState(state);
     print("----didChangeDependencies--------$state");
   }
+
   @override
   void activate() {
-
-
     super.activate();
     print("----activate--------");
-
   }
+
   @override
   void didUpdateWidget(MyHomePage state) {
     super.didUpdateWidget(state);
@@ -159,5 +152,4 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
     //   print(_appLifecycleState);
     // });
   }
-
 }
