@@ -1,6 +1,7 @@
 import 'package:blocwithoutplugin/appexport.dart';
-import 'package:blocwithoutplugin/homescreen/model/home_model.dart';
 
+import 'package:blocwithoutplugin/data/model/home_model.dart';
+import 'package:blocwithoutplugin/utils/route_management/navigation_service.dart';
 import '../bloc/homebloc.dart';
 class MyHomePage extends StatefulWidget {
   @override
@@ -8,8 +9,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  HomeBloc homeBloc=HomeBloc();
-
+  final homeBloc=HomeBloc.instance;
+  final _routeService = NavigationService.instance;
 
   ScrollController controller=ScrollController();
 
@@ -39,18 +40,18 @@ class _MyHomePageState extends State<MyHomePage> {
     return  Scaffold(
 
       appBar:  AppBar(
-        title:  Text('StreamBuilder'),
-        actions: <Widget>[
-          IconButton(
-            tooltip: 'Refresh',
-            icon: Icon(Icons.refresh),
-            onPressed: homeBloc.handleRefresh,
-          )
+        title: Text('Home list',overflow: TextOverflow.ellipsis,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
+        actions: [
+
+          GestureDetector(onTap: (){
+            _routeService.routeTo('/cart');
+
+          },child:Icon(Icons.shopping_cart))
         ],
       ),
-      body: StreamBuilder<List<Homemodel>>(
+      body: StreamBuilder<List<HomeModel>>(
         stream: homeBloc.postsController!.stream,
-        builder: (BuildContext context, AsyncSnapshot<List<Homemodel>> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<List<HomeModel>> snapshot) {
           print('Has error: ${snapshot.hasError}');
           print('Has data: ${snapshot.hasData}');
           print('Snapshot Data ${snapshot.data}');
@@ -63,8 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
             return Column(
               children: <Widget>[
                 Expanded(
-                  child: Scrollbar(
-                    child: RefreshIndicator(
+                 child: RefreshIndicator(
                       onRefresh: homeBloc.handleRefresh,
                       child:ListView.builder(
                         controller: controller,
@@ -84,12 +84,17 @@ class _MyHomePageState extends State<MyHomePage> {
                             ListTile(
                             title: Text(snapshot.data![index].slug!),
                             subtitle: Text(snapshot.data![index].link!),
+                              trailing:           GestureDetector(onTap: (){
+
+homeBloc.addDB(snapshot.data![index]);
+homeBloc.showSnack(context);
+                              },child:Icon(Icons.shopping_cart)),
                           );
                         },
                       ),
                     ),
                   ),
-                ),
+
               ],
             );
           }

@@ -1,5 +1,5 @@
-class Homemodel {
-  Homemodel({
+class HomeModel {
+  HomeModel({
       this.id, 
       this.date, 
       this.slug, 
@@ -7,7 +7,7 @@ class Homemodel {
       this.link, 
       this.protected,});
 
-  Homemodel.fromJson(dynamic json) {
+  HomeModel.fromJson(dynamic json) {
     id = json['id'];
     date = json['date'];
     slug = json['slug'];
