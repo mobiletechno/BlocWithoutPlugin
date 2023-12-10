@@ -48,7 +48,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
               onTap: () {
                 _routeService.routeTo('/cart');
               },
-              child: Icon(Icons.shopping_cart))
+              child: Icon(Icons.shopping_cart)),
+          SizedBox(width: 10,)
         ],
       ),
       body: StreamBuilder<List<HomeModel>>(
